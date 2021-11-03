@@ -1,0 +1,4 @@
+*** Exception: Prelude.head: empty list
+*** Exception: Prelude.undefined
+CallStack (from HasCallStack):
+  undefined, called at <interactive>:1:17 in interactive:Ghci1

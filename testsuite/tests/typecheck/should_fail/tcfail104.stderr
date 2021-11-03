@@ -1,0 +1,22 @@
+
+tcfail104.hs:16:12: error:
+    • Couldn't match type: Char -> Char
+                     with: forall a. a -> a
+      Expected: (forall a. a -> a) -> Char -> Char
+        Actual: (Char -> Char) -> Char -> Char
+    • In the expression: \ x -> x
+      In the expression:
+        if v then (\ (x :: forall a. a -> a) -> x) else (\ x -> x)
+      In the expression:
+        (if v then (\ (x :: forall a. a -> a) -> x) else (\ x -> x)) id 'c'
+
+tcfail104.hs:22:12: error:
+    • Couldn't match type: forall a. a -> a
+                     with: Char -> Char
+      Expected: (Char -> Char) -> Char -> Char
+        Actual: (forall a. a -> a) -> Char -> Char
+    • In the expression: \ (x :: forall a. a -> a) -> x
+      In the expression:
+        if v then (\ x -> x) else (\ (x :: forall a. a -> a) -> x)
+      In the expression:
+        (if v then (\ x -> x) else (\ (x :: forall a. a -> a) -> x)) id 'c'

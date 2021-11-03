@@ -1,0 +1,95 @@
+.. _release-9-4-1:
+
+Version 9.4.1
+==============
+
+Compiler
+~~~~~~~~
+
+- New :ghc-flag:`-Wredundant-strictness-flags` that checks for strictness flags
+  (``!``) applied to unlifted types, which are always strict.
+
+- A new type of plugin: defaulting plugins. These plugins can propose
+  defaults for ambiguous variables that would otherwise cause errors
+  just like the built-in defaulting mechanism.
+
+- The way GHC checks for representation polymorphism has been overhauled:
+  all the checks are now done during typechecking. The error messages
+  now contain more detailed information about the specific check that was performed.
+
+``base`` library
+~~~~~~~~~~~~~~~~
+
+- ``GHC.Exts.magicDict`` has been renamed to ``withDict`` and given a more
+  specific type: ::
+
+        withDict :: forall {rr :: RuntimeRep} st dt (r :: TYPE rr). st -> (dt => r) -> r
+
+  Unlike ``magicDict``, ``withDict`` can be used without defining an
+  intermediate data type. For example, the ``withTypeable`` function from the
+  ``Data.Typeable`` module can now be defined as: ::
+
+        withTypeable :: forall k (a :: k) rep (r :: TYPE rep). ()
+                     => TypeRep a -> (Typeable a => r) -> r
+        withTypeable rep k = withDict @(TypeRep a) @(Typeable a) rep k
+
+  Note that the explicit type applications are required, as the call to
+  ``withDict`` would be ambiguous otherwise.
+
+``ghc-prim`` library
+~~~~~~~~~~~~~~~~~~~~
+
+- ``GHC.Exts.mkWeak#``, ``GHC.Exts.mkWeakNoFinalizer#``, ``GHC.Exts.touch#``
+  and ``GHC.Exts.keepAlive#`` are now levity-polymorphic instead of
+  representation-polymorphic. For instance: ::
+
+        mkWeakNoFinalizer#
+          :: forall {l :: Levity} (a :: TYPE (BoxedRep l)) (b :: Type)
+          .  a -> b -> State# RealWorld -> (# State# RealWorld, Weak# b #)
+
+  That is, the type signature now quantifies over a variable of type ``GHC.Exts.Levity``
+  instead of ``GHC.Exts.RuntimeRep``. In addition, this variable is now inferred,
+  instead of specified, meaning that it is no longer eligible for visible type application.
+
+- The ``GHC.Exts.RuntimeRep`` parameter to ``GHC.Exts.raise#`` is now inferred: ::
+
+        raise# :: forall (a :: Type) {r :: RuntimeRep} (b :: TYPE r). a -> b
+
+- ``GHC.Exts.reallyUnsafePtrEquality#`` has been made more general, as it is now
+  both levity-polymorphic and heterogeneous: ::
+
+        reallyUnsafePtrEquality#
+          :: forall {l :: Levity} (a :: TYPE (BoxedRep l))
+                    {k :: Levity} (b :: TYPE (BoxedRep k))
+          . a -> b -> Int#
+
+  This means that ``GHC.Exts.reallyUnsafePtrEquality#`` can be used
+  on primitive arrays such as ``GHC.Exts.Array#`` and ``GHC.Exts.ByteArray#``.
+  It can also be used on values of different types, without needing to call
+  ``GHC.Exts.unsafeCoerce#``.
+
+- Added ``GHC.Exts.reallyUnsafePtrEquality`` which recovers the
+  previous behaviour of ``GHC.Exts.reallyUnsafePtrEquality#``: ::
+
+        reallyUnsafePtrEquality :: forall (a :: Type). a -> a -> Int#
+
+- Added ``GHC.Exts.sameArray#``, ``GHC.Exts.sameSmallArray#``,
+  ``GHC.Exts.sameByteArray#`` and ``GHC.Exts.sameArrayArray#``: ::
+
+        sameArray# :: Array# a -> Array# a -> Int#
+        sameSmallArray# :: SmallArray# a -> SmallArray# a -> Int#
+        sameByteArray# :: ByteArray# -> ByteArray# -> Int#
+        sameArrayArray# :: ArrayArray# -> ArrayArray# -> Int#
+
+``ghc`` library
+~~~~~~~~~~~~~~~
+
+- A new ``GHC.Hs.Syn.Type`` module has been introduced which defines functions
+  for computing the ``Type`` of an ``HsExpr GhcTc`` in a pure fashion.
+  The ``hsLitType`` and ``hsPatType`` functions that previously lived in
+  ``GHC.Tc.Utils.Zonk`` have been moved to this module.
+- A ``Typeable`` constraint has been added to ``fromStaticPtr`` in the
+  class ``GHC.StaticPtr.IsStatic``. GHC automatically wraps each use of
+  the ``static`` keyword with ``fromStaticPtr``. Because ``static`` requires
+  its argument to be an instance of ``Typeable``, ``fromStaticPtr`` can
+  safely carry this constraint as well.

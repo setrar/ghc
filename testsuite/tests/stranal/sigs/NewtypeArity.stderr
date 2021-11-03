@@ -1,0 +1,27 @@
+
+==================== Strictness signatures ====================
+Test.$tc'MkT:
+Test.$tcT:
+Test.$trModule:
+Test.t: <1!L><1!L>
+Test.t2: <1!L><1!L>
+
+
+
+==================== Cpr signatures ====================
+Test.$tc'MkT:
+Test.$tcT:
+Test.$trModule:
+Test.t: 1
+Test.t2: 1
+
+
+
+==================== Strictness signatures ====================
+Test.$tc'MkT:
+Test.$tcT:
+Test.$trModule:
+Test.t: <1!L><1!L>
+Test.t2: <1!L><1!L>
+
+

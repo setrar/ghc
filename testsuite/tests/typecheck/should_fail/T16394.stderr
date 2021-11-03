@@ -1,0 +1,4 @@
+
+T16394.hs:6:17: error:
+    Instance head cannot contain nested ‘forall’s or contexts
+    In an instance declaration

@@ -1,0 +1,3 @@
+UnsafeInfered09.hs:5:1: error:
+    UnsafeInfered09_A: Can't be safely imported!
+    The module itself isn't safe.

@@ -1,0 +1,4 @@
+
+LinearNoExt.hs:3:14: error:
+    Illegal use of linear functions
+    Suggested fix: Perhaps you intended to use LinearTypes

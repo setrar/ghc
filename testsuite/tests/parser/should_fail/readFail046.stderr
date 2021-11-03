@@ -1,0 +1,5 @@
+
+readFail046.hs:1:14:
+    Unsupported extension: ExistientialQuantification
+    Suggested fix:
+      Perhaps you meant ‘ExistentialQuantification’ or ‘NoExistentialQuantification’

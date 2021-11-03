@@ -1,0 +1,5 @@
+
+qdofail004.hs:10:5:
+    Not in scope: ‘P.fail’
+    Perhaps you want to remove ‘fail’ from the explicit hiding list
+    in the import of ‘Prelude’ (qdofail004.hs:3:1-33).

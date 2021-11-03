@@ -1,0 +1,4 @@
+
+T15527.hs:5:6: error:
+    Illegal visible type application ‘@Int’
+      Perhaps you intended to use TypeApplications

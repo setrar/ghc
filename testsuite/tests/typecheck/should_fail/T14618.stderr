@@ -1,0 +1,21 @@
+
+T14618.hs:7:14: error:
+    • Couldn't match type ‘b’ with ‘forall c. a’
+      Expected: a -> b
+        Actual: a -> forall c. a
+      Cannot equate type variable ‘b’
+      with a type involving polytypes: forall c. a
+      ‘b’ is a rigid type variable bound by
+        the type signature for:
+          safeCoerce :: forall a b. a -> b
+        at T14618.hs:6:1-20
+    • In the expression: f'
+      In an equation for ‘safeCoerce’:
+          safeCoerce
+            = f'
+            where
+                f :: d -> forall c. d
+                f x = x
+                f' = f
+    • Relevant bindings include
+        safeCoerce :: a -> b (bound at T14618.hs:7:1)

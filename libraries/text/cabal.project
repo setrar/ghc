@@ -1,0 +1,4 @@
+packages: .
+packages: benchmarks
+tests: True
+constraints: semigroups -text -hashable -unordered-containers

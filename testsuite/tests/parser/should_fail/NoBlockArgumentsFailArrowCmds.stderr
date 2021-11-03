@@ -1,0 +1,7 @@
+
+NoBlockArgumentsFailArrowCmds.hs:7:27: error:
+    Unexpected lambda command in function application:
+        \ () -> () >- returnA
+    Suggested fixes:
+      Use parentheses.
+      Perhaps you intended to use BlockArguments

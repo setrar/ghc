@@ -1,0 +1,7 @@
+
+DRFUnused.hs:18:5:
+    Ambiguous occurrence ‘foo’
+    It could refer to
+       either the field ‘foo’, defined at DRFUnused.hs:12:16
+           or the field ‘foo’, defined at DRFUnused.hs:11:16
+           or the field ‘foo’, defined at DRFUnused.hs:10:16

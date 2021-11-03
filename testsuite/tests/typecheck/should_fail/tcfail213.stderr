@@ -1,0 +1,7 @@
+
+tcfail213.hs:8:1: error:
+    • Potential superclass cycle for ‘C’
+        one of whose superclass constraints is headed by a type family:
+          ‘F a’
+      Use UndecidableSuperClasses to accept this
+    • In the class declaration for ‘C’

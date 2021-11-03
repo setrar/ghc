@@ -1,0 +1,8 @@
+
+T15859.hs:9:19: error:
+    • Illegal visible, dependent quantification in the type of a term:
+        forall k -> k -> *
+      (GHC does not yet support this)
+    • In an expression type signature: forall k -> k -> Type
+      In the expression: undefined :: forall k -> k -> Type
+      In the expression: (undefined :: forall k -> k -> Type) @Int

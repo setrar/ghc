@@ -1,0 +1,2 @@
+
+T18300.hs:9:23: error: Not in scope: data constructor ‘LiftedRep’

@@ -1,0 +1,7 @@
+
+SimpleFail5b.hs:31:12: error:
+    • Couldn't match type ‘Char’ with ‘Int’
+      Expected: S3 Int
+        Actual: S3 Char
+    • In the pattern: D3Char
+      In an equation for ‘bar3wrong'’: bar3wrong' D3Char = 'a'
