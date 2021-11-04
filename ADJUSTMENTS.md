@@ -1,5 +1,14 @@
 # On Mac
 
+
+## using 8.10.7
+
+```
+wget https://downloads.haskell.org/ghc/8.10.7/ghc-8.10.7-src.tar.xz && tar zxvf ghc-8.10.7-src.tar.xz
+```
+
+## Compiling
+
 ```
 brew install autoconf automake libtool
 ```
@@ -9,7 +18,7 @@ brew install autoconf automake libtool
 ```
 
 ```
-../configure
+./configure
 ```
 
 :x: After `configure` failure install:
