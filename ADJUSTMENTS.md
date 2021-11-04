@@ -7,35 +7,51 @@
 wget https://downloads.haskell.org/ghc/8.10.7/ghc-8.10.7-src.tar.xz && tar zxvf ghc-8.10.7-src.tar.xz
 ```
 
-## Compiling
+## prerequisite
+
+- [ ] Make Tools
 
 ```
 brew install autoconf automake libtool
 ```
 
-```
-./boot
-```
-
-```
-./configure
-```
-
-:x: After `configure` failure install:
-
+- [ ] Cabal Tools
 
 ```
 cabal install alex happy
 ```
 
+:x: Unless after `configure` failure install:
+
+
+## Compiling
+
+- [ ] Initiate
+
+```
+./boot
+```
+
+- [ ] Configure
+
+```
+./configure
+```
+
+- [ ] Compile -jX : X being the number of cores
+
+
 ```
 make -j8   
 ```
+
+- Install the binaries and libraries
 
 ```
 make install
 ```
 
+- [ ] Binaries
 
 ```
 -rwxr-xr-x  1 root  wheel       240  3 Nov 19:01 hp2ps
